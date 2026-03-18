@@ -59,6 +59,15 @@ app.all("*", (req, res, next) => {
   next(new AppError(`Cannot find ${req.originalUrl} on this server`, 404));
 });
 
+// Health check
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "2BHealthy API is running 🏋️‍♂️",
+    version: "1.0.0",
+  });
+});
+
 // ── Global error middleware ─────────────────────────────────
 app.use(globalErrorMiddleware);
 

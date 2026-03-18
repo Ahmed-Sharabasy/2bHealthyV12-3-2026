@@ -3,3 +3,10 @@ node_modules/
 *.log
 uploads/
 firebase-service-account.json
+# ignore fullExerciseApi.exercises.json
+fullExerciseApi.exercises.json
+# ignore config.env
+config.env
+
+
+

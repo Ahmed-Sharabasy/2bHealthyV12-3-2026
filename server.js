@@ -17,6 +17,7 @@ const startServer = async () => {
     console.log(
       `🚀 Server running in ${env.NODE_ENV} mode on port ${env.PORT}`,
     );
+    console.log(`📡 API Base: http://localhost:${env.PORT}/api/v1`);
   });
 
   // ── Handle unhandled promise rejections ─────────────────
