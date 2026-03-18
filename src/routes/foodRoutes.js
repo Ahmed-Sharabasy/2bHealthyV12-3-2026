@@ -14,4 +14,6 @@ router.route("/search").get(foodController.searchRecipesByIngredients);
 // test route
 router.route("/searchIngredient").get(foodController.searchIngredient);
 
+router.route("/generateRandomMealPlan").get(foodController.generateRandomMealPlan);
+
 export default router;

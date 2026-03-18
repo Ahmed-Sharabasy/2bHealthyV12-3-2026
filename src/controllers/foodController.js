@@ -99,3 +99,114 @@ export const searchIngredient = async (req, res) => {
     fat: data.nutrition.nutrients.find((n) => n.name === "Fat")?.amount,
   });
 };
+
+export const generateRandomMealPlan = async (req, res) => {
+//   try {
+//     const { days = 10 } = req.query; // default 10 أيام
+
+//     const mealPlan = [];
+
+//     for (let i = 0; i < days; i++) {
+//       const [breakfastRes, lunchRes, dinnerRes] = await Promise.all([
+//         fetch(
+//           `${BASE_URL}/recipes/random?apiKey=${API_KEY}&number=1&tags=breakfast`
+//         ),
+//         fetch(
+//           `${BASE_URL}/recipes/random?apiKey=${API_KEY}&number=1&tags=lunch`
+//         ),
+//         fetch(
+//           `${BASE_URL}/recipes/random?apiKey=${API_KEY}&number=1&tags=dinner`
+//         ),
+//       ]);
+
+//       const breakfastData = await breakfastRes.json();
+//       const lunchData = await lunchRes.json();
+//       const dinnerData = await dinnerRes.json();
+
+//       const breakfast = breakfastData.recipes[0];
+//       const lunch = lunchData.recipes[0];
+//       const dinner = dinnerData.recipes[0];
+
+//       mealPlan.push({
+//         day: i + 1,
+//         breakfast: {
+//           id: breakfast.id,
+//           title: breakfast.title,
+//           image: breakfast.image,
+//         },
+//         lunch: {
+//           id: lunch.id,
+//           title: lunch.title,
+//           image: lunch.image,
+//         },
+//         dinner: {
+//           id: dinner.id,
+//           title: dinner.title,
+//           image: dinner.image,
+//         },
+//       });
+//     }
+
+//     res.json({
+//       totalDays: days,
+//       plan: mealPlan,
+//     });
+//   } catch (error) {
+//     res.status(500).json({
+  try {
+    const { days = 10 } = req.query; // default 10 أيام
+
+    const mealPlan = [];
+
+    for (let i = 0; i < days; i++) {
+      const [breakfastRes, lunchRes, dinnerRes] = await Promise.all([
+        fetch(
+          `${BASE_URL}/recipes/random?apiKey=${API_KEY}&number=1&tags=breakfast`,
+        ),
+        fetch(
+          `${BASE_URL}/recipes/random?apiKey=${API_KEY}&number=1&tags=lunch`,
+        ),
+        fetch(
+          `${BASE_URL}/recipes/random?apiKey=${API_KEY}&number=1&tags=dinner`,
+        ),
+      ]);
+
+      const breakfastData = await breakfastRes.json();
+      const lunchData = await lunchRes.json();
+      const dinnerData = await dinnerRes.json();
+
+      const breakfast = breakfastData.recipes[0];
+      const lunch = lunchData.recipes[0];
+      const dinner = dinnerData.recipes[0];
+
+      mealPlan.push({
+        day: i + 1,
+        breakfast: {
+          id: breakfast.id,
+          title: breakfast.title,
+          image: breakfast.image,
+        },
+        lunch: {
+          id: lunch.id,
+          title: lunch.title,
+          image: lunch.image,
+        },
+        dinner: {
+          id: dinner.id,
+          title: dinner.title,
+          image: dinner.image,
+        },
+      });
+    }
+
+    res.json({
+      totalDays: days,
+      plan: mealPlan,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error generating meal plan",
+      error: error.message,
+    });
+  }
+};
