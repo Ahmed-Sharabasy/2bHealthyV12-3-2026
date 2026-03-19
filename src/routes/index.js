@@ -6,6 +6,7 @@ import deviceRoutes from "./deviceRoutes.js";
 // import exercisesRoutes from "./exercisesRoutes.js";
 import foodRoutes from "./foodRoutes.js";
 import exerciseRoutes from "./exerciseRoutes.js";
+import aiRoutes from "./aiRoutes.js";
 // import sensorRoutes from "./sensorRoutes.js";
 // import notificationRoutes from "./notificationRoutes.js";
 
@@ -22,6 +23,9 @@ const mountRoutes = (app) => {
 
   // Exercise routes
   app.use(`${API_PREFIX}/exercise`, exerciseRoutes);
+
+  // AI-powered fitness & nutrition routes
+  app.use(`${API_PREFIX}/ai`, aiRoutes);
 
   // app.use(`${API_PREFIX}/sensors`, sensorRoutes);
   // app.use(`${API_PREFIX}/notifications`, notificationRoutes);
